@@ -1,0 +1,9 @@
+*~
+Apt*_GT_Plug.zip
+embed/Apt*_GT_Plug/
+.temp
+grandtab.log
+grandtab.aux
+grandtab.pdf
+vbinary*.pm
+grandtab-[12c].tex

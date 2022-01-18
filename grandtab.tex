@@ -1,0 +1,96 @@
+%\documentclass{standalone}%
+\documentclass[12pt]{article}
+
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{bold-extra}  % \textbf in table cells with \tt font
+\usepackage{underscore}  % for _ in grandtab test names
+\usepackage{lscape}      % for grandtab
+\usepackage{pdflscape}   % for grandtab
+\usepackage{longtable}   % for grandtab
+\usepackage{textcomp}    % for \textnumero
+\usepackage{xcolor}      % for \cellcolor
+\usepackage{colortbl}    % for \cellcolor
+
+\newcommand\bits{\textrm{bits}}
+\newcommand\RLGRTWO{RLGR$'$}
+
+\definecolor{llgray}{RGB}{210,210,210}
+\definecolor{lllgray}{RGB}{230,230,230}
+
+\pagenumbering{gobble} % disable page numbers
+
+\begin{document}
+
+\newcounter{testcnt}
+\newcommand{\nexttest}{\refstepcounter{testcnt}\arabic{testcnt}}
+
+\begin{landscape}
+
+\setlength\minrowclearance{2.3pt} % control # of lines on the last page
+
+% https://texblog.org/2014/10/24/removinghiding-a-column-in-a-latex-table/
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\newcolumntype{C}{@{\hspace{0.4em}}
+                  >{\columncolor{lllgray}}%
+                  c@{\hspace{0.4em}}}
+\newcolumntype{R}{@{\hspace{0.4em}}%
+                  >{\columncolor{lllgray}}%
+                  r@{\hspace{0.4em}}}
+\newcolumntype{L}{@{\hspace{0.4em}}%
+                  >{\columncolor{lllgray}}%
+                  l@{\hspace{0.5em}}}
+\newcolumntype{Z}{@{\hspace{0.4em}}%
+                  >{\columncolor{llgray}}%
+                  c@{\hspace{0.4em}}}
+
+\scriptsize
+\tt
+
+\setlength\LTleft{-25pt}
+\setlength\LTright{0pt}
+
+% hide column3 (size) to save hspace
+\begin{longtable}{RLHCCCCCCCCCCCCCCCC}%
+\toprule
+\caption{Compression ratios for \ref{count:tests} data sources
+  with 16 algorithms}
+\label{tab:grandtab}\\
+    \textnumero & Source & Size &
+    z22 & z1 & EB &
+    F16 & F256 & RLGR & EG & EW &
+    e1 & e2 & e3 & e4 & e5 & DD & RLGR$'$ & e10 \\
+\midrule
+\endfirsthead
+
+\multicolumn{19}{c}%
+{\vspace{10pt}%
+ \tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+    \textnumero & Source & Size &
+    z22 & z1 & EB &
+    F16 & F256 & RLGR & EG & EW &
+    e1 & e2 & e3 & e4 & e5 & DD & RLGR$'$ & e10 \\
+\hline
+\endhead
+
+\hline \multicolumn{19}{r}{\textit{Continued on the next page}} \\
+\cellcolor{white}\vspace{10pt}
+\endfoot
+\hline
+\endlastfoot
+
+\input{grandtab-c.tex}
+
+\bottomrule
+\end{longtable}
+
+\addtocounter{testcnt}{-1}
+\refstepcounter{testcnt}
+\label{count:tests}
+
+\end{landscape}
+
+\end{document}
