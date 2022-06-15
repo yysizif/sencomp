@@ -1,9 +1,9 @@
-# Title TBD
+# Memory-efficient sensor data compression
 
 Please refer to the PSTA [article][psta].  This repository contains
 coder prototypes in Perl5 and test data used in the article.
 
-  [psta]: http://psta.psiras.ru/read/psta2022_TBD.pdf
+  [psta]: https://doi.org/10.25209/2079-3316-2022-13-2-35-63
 
 To run all tests found in the article, you should also download test
 data from EMBED project data site
